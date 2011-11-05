@@ -1,0 +1,45 @@
+JAVIS
+
+design:
+
+________objects_______
+
+
+Card
+	name ("A", "K", "2")
+	value (3..15)
+
+Combination
+	tuples of cards (length 1,2, or 5)
+	
+discardPile
+	list of cards
+
+	drawRandomCards(numCards)
+	drawCards(index, numCards)
+	add([cards])
+
+History (of current round)
+	list of (combination, playerId) tuples
+		
+Player
+	id
+	name
+	list of cards
+	
+	playHand()
+		success	
+		error	
+	pass()
+	getNumCardsLeft()
+	
+Rules
+	checkValidHand(hand, history)
+	
+Game
+	currentPayers (list, size = # of players)
+	discard pile
+	history
+	currentPlayerIndex = 0 (increment as players make move, modulo # of players)
+	finishedPlayers (list)
+	
