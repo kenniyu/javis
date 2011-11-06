@@ -1,6 +1,9 @@
 import card
 import combination
-#HAVE TO TEST DISCARD PILE
+import discardPile
+import history
+import player
+import rules
 
 
 """ TESTING CARD / COMBINATION """
@@ -19,12 +22,54 @@ jack = card.Card("J",11)
 queen = card.Card("Q",12)
 king = card.Card("K",13)
 
-print ace, eight, nine, ten, jack, queen, king
+#print ace, eight, nine, ten, jack, queen, king
 
-pairOfAces = combination.Combination([ace,ace])
+pairof3 = combination.Combination([three,three])
+pairof4 = combination.Combination([four,four])
+pairof5 = combination.Combination([five,five])
+pairof6 = combination.Combination([six,six])
+pairof7 = combination.Combination([seven,seven])
+pairofQ = combination.Combination([queen,queen])
+pairofK = combination.Combination([king,king])
+pairofA = combination.Combination([ace,ace])
 straight = combination.Combination([ten,nine,jack,eight,queen])
 
-print pairOfAces
-print straight
-print pairOfAces.length()
-print straight.length()
+print pairofA
+#print straight
+#print pairOfAces.length()
+#print straight.length()
+
+history = history.History()
+history.add(pairof3,1)
+history.add(pairof5,2)
+history.add(pairof7,3)
+history.add(pairofQ,4)
+history.add(pairofA,1)
+print history.list
+
+discard = discardPile.DiscardPile()
+discard.add(history)
+print "discard:",discard.list
+
+history.clear()
+if not history.list:
+    print "Passed"
+
+print discard.drawRandomCards(2)
+print "discard:",discard.list
+#tempHistory
+print "__________PLAYER TEST____________"
+ken = player.Player("Ken",0)
+print "name:",ken.name,"id:",ken.id,"cards:",ken.cards
+print ken.addCards([ace,ace,two,two,four,five,six,seven,queen,king,three,three,three])
+print ken.addCards([eight])
+print "cards:",ken.cards
+print "num:",ken.getNumCardsLeft()
+
+print ken.removeCards(["8","2","2"])
+print "cards:",ken.cards
+print ken.removeCards(["8"])
+print "cards:",ken.cards
+print "num:",ken.getNumCardsLeft()
+
+

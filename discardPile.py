@@ -3,17 +3,23 @@ import random
 class DiscardPile: #NOT TESTED
     
     def __init__(self):
-        self.cards = []
+        self.list = []
         
     def add(self,history):
-        for hand in history:
-            for card in hand[0]:
-                self.card.append(card)
+        for combo,id in history.list:
+            for card in combo.list:
+                self.list.append(card)
                 
     def drawRandomCards(self, n):
-        random.shuffle(self.cards)
+        random.shuffle(self.list)
         drawn = []
-        while ( len(self.cards) > 0 and n > 0):
-            drawn.append(self.cards.pop())
+        while ( len(self.list) > 0 and n > 0):
+            drawn.append(self.list.pop())
             n-=1
         return drawn
+    
+    def __repr__(self):
+        x = ""
+        for card in self.list:
+            x= x + card.name + " "
+        return x
